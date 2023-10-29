@@ -1,6 +1,10 @@
-# References
+# References 
+## Contributing
 - https://github.com/kubernetes-sigs/cluster-api/tree/main/docs
 - https://kubernetes.io/docs/contribute/
+
+## StyleGuide
+- https://github.com/google/styleguide/tree/gh-pages
 
 Build container image (copy out binary later)
 ```bash
