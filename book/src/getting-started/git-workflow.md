@@ -71,7 +71,7 @@ git add README.md
 
 Commit your changes with a descriptive message
 ```bash
-git commit -m "Added versioning section to README.md"
+git commit -m "Added versioning section"
 ```
 
 Once ready, push your changes your branch `myfeature`
@@ -79,7 +79,7 @@ Once ready, push your changes your branch `myfeature`
 git push -u upstream/myfeature
 ```
 
-## 5. Create a Merge Request (Place Holder)
+## 5. Create a Merge Request
 
 
 ### Get a code review
@@ -95,7 +95,12 @@ Reviewers will do a thorough code review, looking for
 correctness, bugs, opportunities for improvement, documentation and comments,
 and style.
 
-Commit changes made in response to review comments to the same branch: `myfeature`.
+Commit changes made in response to review comments to the same branch: 
+```bash
+git add README.md
+git commit -m "Fixed typos in versioning section"
+git push -u upstream/myfeature
+```
 
 Very small MRs are easy to review.  Very large MRs are very difficult to review.
 
@@ -124,8 +129,8 @@ To squash your commits, perform an [interactive rebase](https://git-scm.com/book
     The output should be similar to this:
 
     ```bash
-    On branch your-contribution
-    Your branch is up to date with 'origin/your-contribution'.
+    On branch myfeature
+    Your branch is up to date with 'origin/myfeature'.
     ```
 
 2. Start an interactive rebase using a specific commit hash, or count backwards from your last commit using `HEAD~<n>`, where `<n>` represents the number of commits to include in the rebase.
