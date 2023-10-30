@@ -7,10 +7,10 @@ Create your clone:
 ```bash
 mkdir -p $working_dir
 cd $working_dir
-git clone git clone git@github.com:$org/$project/$repo.git
+git clone git@gitlab.com:$group/$subgroup/$project.git
 
-cd $working_dir/kubernetes
-git remote add upstream git@github.com:$org/$project/$repo.git
+cd $project
+git remote add upstream git@gitlab.com:$group/$subgroup/$project.git
 
 # Never push to upstream main
 git remote set-url --push upstream no_push
@@ -24,7 +24,7 @@ git remote -v
 Get your local main up to date.
 
 ```bash
-cd $working_dir/kubernetes
+cd $working_dir/$project
 git fetch upstream
 git checkout main
 git rebase upstream/main
@@ -56,27 +56,48 @@ Please don't use `git pull` instead of the above `fetch` and
 and violate the principle that commits ought to be individually understandable
 and useful (see below). 
 
-You might also consider changing your `.git/config` file via
-`git config branch.autoSetupRebase always` to change the behavior of `git pull`, or another non-merge option such as `git pull --rebase`.
-
-## 4. Commit Your Changes
+You might also consider changing your `.git/config` file to change the behavior of `git pull` 
 ```bash
-git commit
+# git pull --rebase
+git config branch.autoSetupRebase always
 ```
 
-## 5. Create a Pull Request (Place Holder)
+## 4. Commit Your Changes
+
+Add changes to staging area
+```bash
+git add README.md
+```
+
+Commit your changes with a descriptive message
+```bash
+git commit -m "Added versioning section to README.md"
+```
+
+Once ready, push your changes your branch `myfeature`
+```bash
+git push -u upstream/myfeature
+```
+
+## 5. Create a Merge Request (Place Holder)
 
 
 ### Get a code review
 
-Once your pull request has been opened it will be assigned to one or more
-reviewers.  Those reviewers will do a thorough code review, looking for
+Open a merge request, assign it to to one or more
+reviewers, and add the `Peer-Review` label
+```bash
+/assign @reviewer-1 @reviewer-2
+/label ~"Workflow:: Peer-Review"
+```
+
+Reviewers will do a thorough code review, looking for
 correctness, bugs, opportunities for improvement, documentation and comments,
 and style.
 
 Commit changes made in response to review comments to the same branch: `myfeature`.
 
-Very small PRs are easy to review.  Very large PRs are very difficult to review.
+Very small MRs are easy to review.  Very large MRs are very difficult to review.
 
 ### Squash commits
 
@@ -167,10 +188,8 @@ For mass automated fixups such as automated doc formatting, use one or more
 commits for the changes to tooling and a final commit to apply the fixup en
 masse. This makes reviews easier.
 
-An alternative to this manual squashing process is to use the Prow and Tide based automation that is configured in GitHub: adding a comment to your MR with `/label tide/merge-method-squash` will trigger the automation so that GitHub squash your commits onto the target branch once the MR is approved. Using this approach simplifies things for those less familiar with Git, but there are situations in where it's better to squash locally; reviewers will have this in mind and can ask for manual squashing to be done.
-
 By squashing locally, you control the commit message(s) for your work, and can separate a large MR into logically separate changes.
-For example: you have a pull request that is code complete and has 24 commits. You rebase this against the same merge base, simplifying the change to two commits. Each of those two commits represents a single logical change and each commit message summarizes what changes. Reviewers see that the set of changes are now understandable, and approve your MR.
+For example: you have a merge request that is code complete and has 24 commits. You rebase this against the same merge base, simplifying the change to two commits. Each of those two commits represents a single logical change and each commit message summarizes what changes. Reviewers see that the set of changes are now understandable, and approve your MR.
 
 ## Merging a commit
 
@@ -181,14 +200,9 @@ Merging happens automatically after both a Reviewer and Approver have approved t
 ## Reverting a commit
 
 In case you wish to revert a commit, use the following instructions.
-<div class="warning">
-If you have upstream write access, please refrain from using the
-`Revert` button in the GitHub UI for creating the MR, because GitHub
-will create the MR branch inside the main repository rather than inside your fork.
-</div>
 
 - Create a branch and sync it with upstream.
-  ```sh
+  ```bash
   # create a branch
   git checkout -b myrevert
 
@@ -197,22 +211,22 @@ will create the MR branch inside the main repository rather than inside your for
   git rebase upstream/main
   ```
 - If the commit you wish to revert is a *merge commit*, use this command:
-  ```sh
+  ```bash
   # SHA is the hash of the merge commit you wish to revert
   git revert -m 1 <SHA>
   ```
   If it is a *single commit*, use this command:
-  ```sh
+  ```bash
   # SHA is the hash of the single commit you wish to revert
   git revert <SHA>
   ```
 
 - This will create a new commit reverting the changes. Push this new commit to your remote.
-  ```sh
+  ```bash
   git push <your_remote_name> myrevert
   ```
 
-- Finally, [create a Pull Request](#7-create-a-pull-request) using this branch.
+- Finally, create a Merge Request using this branch.
 
 
 ---
