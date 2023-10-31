@@ -1,82 +1,65 @@
 # Merge Request Process (Place Holder)
 
-This doc explains the process and best practices for submitting a pull request to the [Kubernetes project](https://github.com/kubernetes/kubernetes) and its associated sub-repositories. 
+This doc explains the process and best practices for submitting a merge request.
 It should serve as a reference for all contributors, and be useful especially to new and infrequent submitters.
 
-- [Before You Submit a Pull Request](#before-you-submit-a-pull-request)
-  - [Run Local Verifications](#run-local-verifications)
-- [The Pull Request Submit Process](#the-pull-request-submit-process)
-  - [Marking Unfinished Pull Requests](#marking-unfinished-pull-requests)
-  - [Pull Requests and the Release Cycle](#pull-requests-and-the-release-cycle)
-  - [Comment Commands Reference](#comment-commands-reference)
-  - [Automation](#automation)
-  - [How the e2e Tests Work](#how-the-e2e-tests-work)
-- [Why was my pull request closed?](#why-was-my-pull-request-closed)
-- [Why is my pull request not getting reviewed?](#why-is-my-pull-request-not-getting-reviewed)
-- [Best Practices for Faster Reviews](#best-practices-for-faster-reviews)
-  - [Familiarize yourself with project conventions](#familiarize-yourself-with-project-conventions)
-  - [Is the feature wanted? File a Kubernetes Enhancement Proposal](#is-the-feature-wanted-file-a-kubernetes-enhancement-proposal)
-  - [Smaller Is Better: Small Commits, Small Pull Requests](#smaller-is-better-small-commits-small-pull-requests)
-  - [Open a Different Pull Request for Fixes and Generic Features](#open-a-different-pull-request-for-fixes-and-generic-features)
-  - [Don't Open Pull Requests That Span the Whole Repository](#dont-open-pull-requests-that-span-the-whole-repository)
-  - [Comments Matter](#comments-matter)
-  - [Test](#test)
-  - [Squashing](#squashing)
-  - [Commit Message Guidelines](#commit-message-guidelines)
-  - [KISS, YAGNI, MVP, etc.](#kiss-yagni-mvp-etc)
-  - [It's OK to Push Back](#its-ok-to-push-back)
-  - [Common Sense and Courtesy](#common-sense-and-courtesy)
-  - [Trivial Edits](#trivial-edits)
-- [The Testing and Merge Workflow](#the-testing-and-merge-workflow)
-  - [More About `Ok-To-Test`](#more-about-ok-to-test)
+## Table of Contents
+
+Section                                                                                      | Contents
+-------------------------------------------------------------------------------------------- | --------
+[Before You Submit a Pull Request](#before-you-submit-a-pull-request)                        | [Run Local Verifications](#run-local-verifications)
+[The Pull Request Submit Process](#the-pull-request-submit-process)                          | [Marking Unfinished Pull Requests](#marking-unfinished-pull-requests) • [Pull Requests and the Release Cycle](#pull-requests-and-the-release-cycle) • [Comment Commands Reference](#comment-commands-reference) • [Automation](#automation) • [How the e2e Tests Work](#how-the-e2e-tests-work)
+[Why was my pull request closed?](#why-was-my-pull-request-closed)                           | 
+[Why is my pull request not getting reviewed?](#why-is-my-pull-request-not-getting-reviewed) |
+[Best Practices for Faster Reviews](#best-practices-for-faster-reviews)                      | [Familiarize yourself with project conventions](#familiarize-yourself-with-project-conventions) • [Is the feature wanted? File a Kubernetes Enhancement Proposal](#is-the-feature-wanted-file-a-kubernetes-enhancement-proposal) • [Smaller Is Better: Small Commits, Small Pull Requests](#smaller-is-better-small-commits-small-pull-requests) • [Open a Different Pull Request for Fixes and Generic Features](#open-a-different-pull-request-for-fixes-and-generic-features) • [Don't Open Pull Requests That Span the Whole Repository](#dont-open-pull-requests-that-span-the-whole-repository) • [Comments Matter](#comments-matter) • [Test](#test) • [Squashing](#squashing) • [Commit Message Guidelines](#commit-message-guidelines) • [KISS, YAGNI, MVP, etc.](#kiss-yagni-mvp-etc) • [It's OK to Push Back](#its-ok-to-push-back) • [Common Sense and Courtesy](#common-sense-and-courtesy) • [Trivial Edits](#trivial-edits)
+[The Testing and Merge Workflow](#the-testing-and-merge-workflow)                            | [More About `Ok-To-Test`](#more-about-ok-to-test)
+
+
 
 
 # Before You Submit a Pull Request
 
-This guide is for contributors who already have a pull request to submit. 
-If you're looking for information on setting up your developer environment and creating code to contribute to Kubernetes, see the [development guide](/contributors/devel/development.md).
+This guide is for contributors who already have a merge request to submit. 
+If you're looking for information on setting up your developer environment and creating code to contribute to Kubernetes, see the [development guide](development.md).
 
-First-time contributors should head to the [Contributor Guide](/contributors/guide/README.md) to get started.
 
-**Make sure your pull request adheres to our best practices. 
-These include following project conventions, making small pull requests, and commenting thoroughly. Please read the more detailed section on [Best Practices for Faster Reviews](#best-practices-for-faster-reviews) at the end of this doc.**
+**Make sure your pull request adheres to our best practices**.
+These include following project conventions, making small pull requests, and commenting thoroughly. Please read the more detailed section on [Best Practices for Faster Reviews](#best-practices-for-faster-reviews) at the end of this doc.
 
 ## Run Local Verifications
 
 You can run these local verifications before you submit your pull request to predict the pass or fail of continuous integration.
 
-* Run and pass `make verify` (can take 30-40 minutes)
+* Run and pass `make verify`
 * Run and pass `make test`
 * Run and pass `make test-integration`
 
-# The Pull Request Submit Process
+# The Merge Request Submit Process
 
-Merging a pull request requires the following steps to be completed before the pull request will be merged automatically.
+Merging a merge request requires the following steps to be completed before the pull request will be merged automatically.
 
-- [Open a pull request](https://help.github.com/articles/about-pull-requests/)
-  - *For kubernetes/kubernetes repository only:* Add [release notes](/contributors/guide/release-notes.md) if needed.
-- Follow the EasyCLA steps to [sign the CLA](https://git.k8s.io/community/CLA.md) (prerequisite)
+- Open a pull request
 - Pass all e2e tests
 - Get all necessary approvals from reviewers and code owners
 
-## Marking Unfinished Pull Requests
+## Marking Unfinished Merge Requests
 
-If you want to solicit reviews before the implementation of your pull request is complete, you should hold your pull request to ensure that Tide does not pick it up and attempt to merge it. 
+If you want to solicit reviews before the implementation of your merge request is complete, you should hold your merge request.
 There are two methods to achieve this:
 
-1. You may add the `/hold` or `/hold cancel` comment commands
+1. You may add the `/label ~"Workflow:: On Hold"`
 2. You may add or remove a `WIP` or `[WIP]` prefix to your pull request title
 
-The GitHub robots will add and remove the `do-not-merge/hold` label as you use the comment commands and the `do-not-merge/work-in-progress` label as you edit your title. 
 While either label is present, your pull request will not be considered for merging.
 
 ## Pull Requests and the Release Cycle
 
 If a pull request has been reviewed but held or not approved, it might be due to the current phase in the [Release Cycle](/contributors/devel/sig-release/release.md). 
+
 Occasionally, a SIG may freeze their own code base when working towards a specific feature or goal that could impact other development. 
 During this time, your pull request could remain unmerged while their release work is completed.
 
-If you feel your pull request is in this state, contact the appropriate [SIG](https://git.k8s.io/community/sig-list.md) or [SIG-Release](https://git.k8s.io/sig-release) for clarification.
+If you feel your pull request is in this state, contact the appropriate POC for clarification.
 
 Check the [The Testing and Merge Workflow](#the-testing-and-merge-workflow) at the end of this document if you're interested in the details on how exactly the automation processes pull requests. 
 
@@ -158,10 +141,7 @@ Let's talk about best practices so your pull request gets reviewed quickly.
 
 ## Familiarize yourself with project conventions
 
-* [Development guide](/contributors/devel/development.md)
-* [Coding conventions](../guide/coding-conventions.md)
-* [API conventions](/contributors/devel/sig-architecture/api-conventions.md)
-* [Kubectl conventions](/contributors/devel/sig-cli/kubectl-conventions.md)
+* [Coding conventions](../getting-started/coding-conventions.md)
 
 ## Is the feature wanted? File a Kubernetes Enhancement Proposal
 

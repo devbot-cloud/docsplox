@@ -1,5 +1,5 @@
 # Git Workflow
-
+This doc explains how to start contributing through git and Merge Requests. It should serve as a reference for all contributors, and be useful especially to new and infrequent submitters.
 ## 1. Clone clone the repo to local storage
 
 Create your clone:
@@ -81,6 +81,13 @@ git push -u upstream/myfeature
 
 ## 5. Create a Merge Request
 
+You can create a merge request from the list of merge requests.
+
+1. On the left sidebar, select **Search or go to** and find your project.
+2. Select **Code > Merge requests**.
+3. In the upper-right corner, select **New merge request**.
+4. Select a source and target branch and then **Compare branches and continue**.
+5. Fill out the fields and select **Create merge request**.
 
 ### Get a code review
 

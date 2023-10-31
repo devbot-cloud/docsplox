@@ -1,28 +1,28 @@
 # Code conventions (Place Holder)
+This doc explains the process and best practices for project conventions.
+## Bash
+  - [Shell Style Guide](../styleguide/shellguide.md)
+  - Ensure that build, release, test, and cluster-management scripts run on macOS
 
-  - Bash
-    - [Shell Style Guide](../styleguide/shellguide.md)
-    - Ensure that build, release, test, and cluster-management scripts run on macOS
-
-  - Go
-    - [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
-    - [Effective Go](https://golang.org/doc/effective_go.html)
-    - Know and avoid [Go landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f)
-    - Comment your code.
-      - [Go's commenting conventions](http://blog.golang.org/godoc-documenting-go-code)
-      - If reviewers ask questions about why the code is the way it is, that's a sign that comments might be helpful.
-    - Command-line flags should use dashes, not underscores
-    - Naming
-      - Please consider package name when selecting an interface name, and avoid redundancy. For example, `storage.Interface` is better than `storage.StorageInterface`.
-      - Do not use uppercase characters, underscores, or dashes in package names.
-      - Please consider parent directory name when choosing a package name. For example, `pkg/controllers/autoscaler/foo.go` should say `package autoscaler` not `package autoscalercontroller`.
-          - Unless there's a good reason, the `package foo` line should match the name of the directory in which the `.go` file exists.
-          - Importers can use a different name if they need to disambiguate.
-      - Locks should be called `lock` and should never be embedded (always `lock sync.Mutex`). When multiple locks are present, give each lock a distinct name following Go conventions: `stateLock`, `mapLock` etc.
-    - [API changes](/contributors/devel/sig-architecture/api_changes.md)
-    - [API conventions](/contributors/devel/sig-architecture/api-conventions.md)
-    - [Kubectl conventions](/contributors/devel/sig-cli/kubectl-conventions.md)
-    - [Logging conventions](/contributors/devel/sig-instrumentation/logging.md)
+## Go
+  - [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+  - [Effective Go](https://golang.org/doc/effective_go.html)
+  - Know and avoid [Go landmines](https://gist.github.com/lavalamp/4bd23295a9f32706a48f)
+  - Comment your code.
+    - [Go's commenting conventions](http://blog.golang.org/godoc-documenting-go-code)
+    - If reviewers ask questions about why the code is the way it is, that's a sign that comments might be helpful.
+  - Command-line flags should use dashes, not underscores
+  - Naming
+    - Please consider package name when selecting an interface name, and avoid redundancy. For example, `storage.Interface` is better than `storage.StorageInterface`.
+    - Do not use uppercase characters, underscores, or dashes in package names.
+    - Please consider parent directory name when choosing a package name. For example, `pkg/controllers/autoscaler/foo.go` should say `package autoscaler` not `package autoscalercontroller`.
+        - Unless there's a good reason, the `package foo` line should match the name of the directory in which the `.go` file exists.
+        - Importers can use a different name if they need to disambiguate.
+    - Locks should be called `lock` and should never be embedded (always `lock sync.Mutex`). When multiple locks are present, give each lock a distinct name following Go conventions: `stateLock`, `mapLock` etc.
+  - [API changes](/contributors/devel/sig-architecture/api_changes.md)
+  - [API conventions](/contributors/devel/sig-architecture/api-conventions.md)
+  - [Kubectl conventions](/contributors/devel/sig-cli/kubectl-conventions.md)
+  - [Logging conventions](/contributors/devel/sig-instrumentation/logging.md)
 
 ## Testing conventions
 

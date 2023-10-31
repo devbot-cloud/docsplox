@@ -1,28 +1,32 @@
 .tophead {
-    position: relative;
-    width: 100%;
-    height: 18px;
-    margin-bottom: 10px;
-    left: 0;
-    top: 0;
-    background: #307fbe;
-    color: white;
-    text-align: center;
-    font-size: small;
-    z-index: 10002;
-    margin-top: 0;
-  }
+  position: relative;
+  width: 100%;
+  height: 18px;
+  margin-bottom: 10px;
+  left: 0;
+  top: 0;
+  background: #307fbe;
+  color: white;
+  text-align: center;
+  font-size: small;
+  z-index: 10002;
+  margin-top: 0;
+}
   
-  .footer {
-    position: fixed;
-    width: 100%;
-    height: 18px;
-    left: 0;
-    bottom: 0;
-    background-color: #307fbe;
-    color: white;
-    text-align: center;
-    font-size: small;
-    z-index: 1002;
-    margin-top: 10px;
-  }
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 18px;
+  left: 0;
+  bottom: 0;
+  background-color: #307fbe;
+  color: white;
+  text-align: center;
+  font-size: small;
+  z-index: 1002;
+  margin-top: 10px;
+}
+
+table {
+  float: left;
+}

@@ -2,12 +2,22 @@
 [Workload Migration](README.md)
 
 # Getting Started
-- [Git Workflow](getting-started/git-workflow.md)
-- [Merge Request Process](getting-started/merge-requests.md)
-- [Coding Conventions](getting-started/coding-conventions.md)
-- [Release Notes](getting-started/release-notes.md)
+- [Getting-Started](getting-started/contributing.md)
+    - [Git Workflow](getting-started/git-workflow.md)
+    - [Merge Request Process](getting-started/merge-requests.md)
+    - [Coding Conventions](getting-started/coding-conventions.md)
+    - [Development Guide](getting-started/development.md)
 
-# Style Guide
-- [Shell Style Guide](styleguide/shellguide.md)
 -----------
-[Contributors](misc/contributors.md
+
+- [Testing]()
+    - [Unit]()
+    - [Integration]()
+    - [End-to-end]()
+    - [Conformance]()
+
+- [Style Guides]()
+    - [Shell Style Guide](styleguide/shellguide.md)
+    - [Documentation Style Guide](styleguide/documentation-guide.md)
+-----------
+[Contributors](misc/contributors.md)
